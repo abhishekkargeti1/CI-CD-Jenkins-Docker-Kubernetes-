@@ -44,7 +44,7 @@ pipeline{
             )
                 ]){
                     sh 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
-                    sh 'docker image tag authserviceimages:latest  abhishekkargeti/authserviceimages:latest'
+                    sh 'docker image tag ${IMAGE_NAME}:latest  abhishekkargeti/authserviceimages:latest'
                     sh 'docker push abhishekkargeti/authserviceimages:latest '
                     sh 'echo "Image Push Successfully"'
                 }
