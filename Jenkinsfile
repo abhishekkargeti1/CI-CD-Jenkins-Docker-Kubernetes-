@@ -56,6 +56,7 @@ pipeline{
                 sh 'kubectl apply -f auth-server-deployment.yml '
                 
         }
+    }
         stage("Verify Deployment") {
             steps {
                 echo "Checking Kubernetes deployment..."
@@ -69,7 +70,7 @@ pipeline{
             }
         }
     }
-}
+
 
  post {
 
@@ -81,7 +82,6 @@ pipeline{
             echo "CI/CD pipeline failed!"
         }
     }
-
-
-
 }
+
+
