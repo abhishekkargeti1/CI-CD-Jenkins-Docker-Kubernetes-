@@ -53,8 +53,7 @@ pipeline{
         stage("Deployment"){
             steps{
                 sh 'echo "Code Deployment"'
-                sh 'cd ../authserver/'
-                sh 'kubectl apply -f auth-server-deployment.yml '
+                sh 'kubectl apply -f  /home/ubuntu/workspace/authserver/auth-server-deployment.yml '
                 
         }
     }
