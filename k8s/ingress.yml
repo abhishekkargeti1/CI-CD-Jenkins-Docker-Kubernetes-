@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-server-ingress
+  namespace: authserver
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /authservice(/|$)(.*)
+        backend:
+          service:
+            name: auth-server-service
+            port: 
+              number: 80
+
