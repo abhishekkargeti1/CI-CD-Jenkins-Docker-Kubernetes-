@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-server-service
+  namespace: authserver
+spec:
+  type: ClusterIP
+  selector:
+    app: auth-server-app
+  ports:
+    - port: 80
+      targetPort: 8087

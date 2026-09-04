@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: auth-server-deployment
+  namespace: authserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auth-server-app
+
+  template:
+    metadata:
+      name: auth-server
+      labels:
+        app: auth-server-app
+    spec:
+      containers:
+        - name: auth-server-app
+          image: abhishekkargeti/authserviceimages
+          ports:
+            - containerPort: 8087
+          env:
+            - name: DB_URL
+              value: "jdbc:mysql://mysqlcontainer:3306/employees"
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secret-config-file
+                  key: MYSQL_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-config-file
+                  key: MYSQL_PASSWORD
